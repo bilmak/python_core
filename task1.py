@@ -1,17 +1,14 @@
-def get_fractions(a_b:str, c_d:str)-> str:
-    x, y = a_b.split("/")
-    i, j = c_d.split("/")
-    x = int(x)
-    y = int(y)
-    i = int(i)
-    j = int(j)
-    if y != j:
-        return "Denominators are not the same"
-    result = x + i
-    return f"{result}/{j}"    
+def sorted_list(words: list)->list:
+    unique_list:list = []
+    for word in words:
+        if word in unique_list:
+            continue
+        else:
+            unique_list.append(word)
+         
+    sorted_list:list = sorted(unique_list, key=len ,reverse=True)
+    print(sorted_list)
+    return sorted_list
     
     
-a_b = '1/3'
-c_b = '5/3'
-print(get_fractions(a_b, c_b))
-    
+sorted_list(['red', 'white', 'black', 'red', 'green', 'black'])
