@@ -10,7 +10,7 @@ def frequency_letter(s: str) -> dict:
     if not result:
         print("Dict is empty")
 
-    print(result)
+    return result
 
 
 frequency_letter('Oh, it is python')
