@@ -1,11 +1,16 @@
-def get_tuple(num: int) -> tuple[int]:
-    result = []
-    for i in str(num):
-        result.append(i)
+def frequency_letter(s: str) -> dict:
+    result: dict = {}
 
-    answer = tuple(result)
-    print(answer)
-    return answer
+    new_string = s.lower()
+    for v in new_string:
+        if v not in result:
+            result[v] = 0
+        result[v] += 1
+
+    if not result:
+        print("Dict is empty")
+
+    print(result)
 
 
-get_tuple(456)
+frequency_letter('Oh, it is python')
