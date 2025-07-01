@@ -1,12 +1,12 @@
 def query(data, *args):
-    for k in args:
-        rows = k(data)
-        print(k(data))
+    for func in args:
+        data = func(data)
+    print(data)
+    return data
 
-    data = select('name', 'gender', 'sport')(friends)
-
-    data = field_filter('sport', *('Basketball', 'Volleyball'))(data)
-    data = field_filter('gender', *('male',))(data)
+    # data = select('name', 'gender', 'sport')(friends)
+    # data = field_filter('sport', *('Basketball', 'Volleyball'))(data)
+    # data = field_filter('gender', *('male',))(data)
 
 
 def select(*args):

@@ -11,7 +11,7 @@ def intersect(*args) -> set:
     for row in args[1:]:
         result = result.intersection(row)
 
-    print(result)
+    return result
 
 
 union(('S', 'A', 'M'), ['S', 'P', 'A', 'C'])
