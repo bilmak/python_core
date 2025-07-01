@@ -1,41 +1,14 @@
-def query(data, *args):
-    for func in args:
-        data = func(data)
-    print(data)
-    return data
-
-    # data = select('name', 'gender', 'sport')(friends)
-    # data = field_filter('sport', *('Basketball', 'Volleyball'))(data)
-    # data = field_filter('gender', *('male',))(data)
-
-
-def select(*args):
-    def inner(data: list[dict]) -> list[dict]:
-        result: list[dict] = []
-        for row in data:
-            data_dict: dict = {}
-            for k, v in row.items():
-                if k in args:
-                    data_dict[k] = v
-            result.append(data_dict)
-        return result
-    return inner
+def linear_seq(sequence):
+    result = []
+    for item in sequence:
+        if isinstance(item, (list, tuple, set)):
+            result.extend(linear_seq(item))
+        else:
+            result.append(item)
+    return result
 
 
-def field_filter(key, *args):
-    def inner(data: list[dict]) -> list[dict]:
-        result: list[dict] = []
-        for row in data:
-            if row[key] in args:
-                result.append(row)
-        return result
-    return inner
+sequence = [1, 2, 3, [4, 5, (6, 7)]]
 
-
-friends = [
-    {'name': 'Sam', 'gender': 'male', 'sport': 'Basketball'},
-    {'name': 'Emily', 'gender': 'female', 'sport': 'Volleyball'},
-]
-query(friends, select('name', 'gender', 'sport'),
-      field_filter('sport', *('Basketball', 'Volleyball')),
-      field_filter('gender', *('male',)))
+print(linear_seq(sequence))
+# [1, 2,3,4,5,6,7]
