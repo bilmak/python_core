@@ -1,14 +1,25 @@
-def linear_seq(sequence):
-    result = []
-    for item in sequence:
-        if isinstance(item, (list, tuple, set)):
-            result.extend(linear_seq(item))
-        else:
-            result.append(item)
-    return result
+from datetime import datetime
+from time import sleep
 
 
-sequence = [1, 2, 3, [4, 5, (6, 7)]]
+def log(func):
+    def inner(*args, **kwargs):
+        time_start = datetime.now()
+        result = func(*args, **kwargs)
+        end_time = datetime.now()
+        diff = round((end_time - time_start).total_seconds(), 5)
+        with open("task2.txt", "w")as f:
+            f.write(
+                f"{func.__name__}; args:{args}; kwargs: {kwargs}; execution time: {diff} sec. Result = {result}")
+        return result
 
-print(linear_seq(sequence))
-# [1, 2,3,4,5,6,7]
+    return inner
+
+
+@log
+def foo(a, b, c):
+    sleep(1)
+    return a+b+c
+
+
+foo(1, 2, c=3)

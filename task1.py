@@ -1,13 +1,26 @@
-def seq_sum(sequence):
-    result = 0
-    for item in sequence:
-        if isinstance(item, (list, tuple, set)):
-            result += seq_sum(item)
-        else:
-            result += item
-    return result
+from time import sleep
+from datetime import timedelta, datetime
+
+execution_time: dict = {}
 
 
-sequence = [1, 2, 3, [4, 5, (6, 7)]]
-print(seq_sum(sequence))
-# 28
+def time_decorator(func):
+    def wrapped(*args):
+        time_start = datetime.now()
+        func(*args)
+        time_end = datetime.now()
+        diff = time_end-time_start
+        execution_time[func.__name__] = str(diff)
+    return wrapped
+
+
+@time_decorator
+def func_add(a, b):
+    sleep(0.2)
+    return a + b
+
+
+func_add(10, 20)
+
+print(execution_time)
+# 0.212341254
