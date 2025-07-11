@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class Vehicle(ABC):
     def __init__(self, brand, year):
         self.brand = brand
@@ -41,6 +40,11 @@ class ElectricCar(Car):
         super().__init__(brand, year, seats)
         self.battery_capacity = battery_capacity
         self.range_km = range_km
+        
+    @classmethod
+    def from_string(cls, info:str):
+        brand, year, seats, battery, range_km = info.split(",")
+        return cls(brand, int(year), int(seats), battery, range_km)
 
     @property
     def describe(self):
@@ -55,6 +59,7 @@ class ElectricCar(Car):
     def upgrade_battery(self, extra_kwh):
         self.battery_capacity += extra_kwh
 
+    
 
 vehicles = [
     Car("Toyota", 2020, 5),
@@ -63,8 +68,14 @@ vehicles = [
     Car("Toyota", 2011, 5)
 ]
 
-
+input_inf = "Tesla, 2022, 5, 100, 600"
+electric = ElectricCar.from_string(input_inf)
+print(electric.describe)
 current_year = 2025
 v_sorted = sorted(vehicles, key=lambda v: v.get_age(current_year))
-for v in v_sorted:
-    print(v.describe)
+electric_count = sum(1 for v in vehicles if isinstance(v, ElectricCar))
+
+with open("vehicles.txt", "w") as file:
+    for v in v_sorted:
+        file.write(f"{v.describe}, \n")
+    file.write(f"Electric car count = {electric_count}")

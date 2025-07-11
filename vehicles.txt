@@ -1,0 +1,5 @@
+Brand: Tesla, Year: 2022, Seats: 5, Battery: 100, Range: 600, 
+Brand: Giant, Year: 2021, Type: mountain, 
+Brand: Toyota, Year: 2020, Seats: 5, 
+Brand: Toyota, Year: 2011, Seats: 5, 
+Electric car count = 1
