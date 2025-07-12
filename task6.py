@@ -15,7 +15,8 @@ class Car(Vehicle):
     def vehicle_type(self)->str:
         return f"{self.brand_name} {__class__.__name__}"
     
-    def is_motorcycle(self)->bool:
+    @staticmethod
+    def is_motorcycle()->bool:
         return False
     
     @property
@@ -26,8 +27,9 @@ class Car(Vehicle):
 class Motorcycle(Vehicle):
     def __init__(self, brand_name, year_of_issue, base_price, mileage):
         super().__init__(brand_name, year_of_issue, base_price, mileage)
-     
-    def is_motorcycle(self)->bool:
+    
+    @staticmethod
+    def is_motorcycle()->bool:
         return True   
         
 
@@ -48,7 +50,8 @@ class Truck(Vehicle):
     def vehicle_type(self)->str:
         return f"{self.brand_name} {__class__.__name__}"
     
-    def is_motorcycle(self)->bool:
+    @staticmethod
+    def is_motorcycle()->bool:
         return False
     
     @property
