@@ -56,13 +56,31 @@ class Bus(Transport):
         return 0.25
 
 
-c= Car.from_data("Toyota",18000 )
-v = Bus.from_data("Yamaha", 6000) 
-b = Bike.from_data("Volvo", 10000)
-
-for i in [c,b,v]:
-    print(f"{i.name}, speed {i.get_max_speed()}, tax {i.calculate_tax()}")
+c = Car.from_data("Toyota", 18000)
+v = Bike.from_data("Yamaha", 6000)
+b = Bus.from_data("Volvo", 10000)
 
 # Toyota, speed: 180, tax: 3600.0
 # Yamaha, speed: 60, tax: 600.0
 # Volvo, speed: 100, tax: 2500.0
+#for i in [c, v, b]:
+    #print(f"{i.name}, speed {i.get_max_speed()}, tax {i.calculate_tax()}")
+
+transport_list = [
+    y := Car.from_data("Toyota", 18000),
+    i := Bike.from_data("Yamaha", 6000),
+    l := Bus.from_data("Volvo", 10000),
+    d := Car.from_data("Mercedes", 18043),
+    j := Bike.from_data("Suzuki", 60726),
+    r := Bus.from_data("Volvo", 100837)]
+
+print("\nSorted by speed:")
+for transport in sorted_list:
+    print(f"{transport.name}, speed: {transport.get_max_speed()}, tax: {transport.calculate_tax()}")
+
+print("\nSorted by tax:")
+for transport in max_taxes:
+    print(f"{transport.name}, tax rate: {transport.__class__.get_tax_rate()}, tax: {transport.calculate_tax()}")
+
+top = max_taxes[0]
+print(f"\nMax tax: {top.name}, tax: {top.calculate_tax()}")
