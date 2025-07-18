@@ -17,9 +17,17 @@ class Currency():
     def __str__(self):
         return f"{self.value} {self.name}"
 
-    def __add__(self, other_currency):
-
-        return f"{self.value+  other_currency.rate/self.rate}"
+    def __add__(self, other_currency: "Currency"):
+        exchange_rate = self.rate/other_currency.rate
+        return f"{self.value +  exchange_rate *  other_currency.value}"
+    
+    def __eq__(self, other_currency: "Currency"):
+        exchange_rate = self.rate/other_currency.rate
+        eqq = other_currency.value * exchange_rate 
+        if eqq == self.value:
+            return True
+        return False
+        
 
 
 class Euro(Currency):
@@ -86,3 +94,11 @@ print(
 # e + r = >  101.0 EUR  # Euro instance printed
 # r + d = >  10100.0 GBP  # Pound instance printed
 # d + e = >  400.0 USD  # Dollar instance printed
+e = Euro(100)
+r = Pound(100)
+d = Dollar(200)
+print(
+    f"e == r  =>  {e == r}\n" #False
+    f"r == d  =>  {r == d}\n" #False
+    f"d == e  =>  {d == e}\n" #True
+)
