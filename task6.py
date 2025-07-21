@@ -27,6 +27,14 @@ class Currency():
         if eqq == self.value:
             return True
         return False
+    
+    def __gt__(self, other_currency: "Currency"):
+        exchange_rate = self.rate / other_currency.rate
+        qt = other_currency.value * exchange_rate
+        if qt > self.value:
+            return True
+        return False
+        
         
 
 
@@ -101,4 +109,13 @@ print(
     f"e == r  =>  {e == r}\n" #False
     f"r == d  =>  {r == d}\n" #False
     f"d == e  =>  {d == e}\n" #True
+)
+
+e = Euro(100)
+r = Pound(100)
+d = Dollar(200)
+print(
+    f"e > r  =>  {e > r}\n" 
+    f"r > d  =>  {r > d}\n" 
+    f"d > e  =>  {d > e}\n" 
 )
