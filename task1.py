@@ -26,7 +26,7 @@ class Pagination():
         box = ""
 
         for i in self.text:
-            box +=i
+            box += i
             if len(box) == self.num:
                 self.items_on_page.append(box)
                 box = ""
@@ -36,7 +36,6 @@ class Pagination():
 
         if number_of_page < 0 or number_of_page >= len(self.items_on_page):
             raise Exception("Invalid index. Page is missing")
-        
 
         return len(self.items_on_page[number_of_page])
 
@@ -46,11 +45,6 @@ class Pagination():
             if find_text in k:
                 result.append(i)
         return result
-        
-                
-        
-       
-        
 
     def display_page(self):
         pass
@@ -62,7 +56,7 @@ print(page.page_count())  # 4
 print(page.count_items_on_page(0))  # 5
 print(page.count_items_on_page(3))  # 4
 # print(page.count_items_on_page(4)) #Invalid index. Page is missing.
-print(page.find_page('Your')) #[0]
-print(page.find_page('e')) #[1, 3]
-print(page.find_page('beautiful')) #[1, 2]
-#print(page.find_page('great')) #Exception: 'great' is missing on the pages
+print(page.find_page('Your'))  # [0]
+print(page.find_page('e'))  # [1, 3]
+print(page.find_page('beautiful'))  # [1, 2]
+# print(page.find_page('great')) #Exception: 'great' is missing on the pages
